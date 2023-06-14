@@ -19,4 +19,13 @@ CREATE TABLE employee (
     last_name VARCHAR(30),
     role_id INT NOT NULL,
     manager_id INT
-)
+);
+
+USE employees;
+INSERT INTO department
+(name)
+VALUES
+ ()
+ ()
+ ()
+ ()
