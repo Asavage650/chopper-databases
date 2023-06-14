@@ -72,3 +72,11 @@ function prompt() {
 function viewAlldepartments() {
   const query = ``;
 }
+
+function viewAllroles() {
+  const query = ``;
+}
+
+function viewAllEmployees() {
+  const query = ``;
+}
