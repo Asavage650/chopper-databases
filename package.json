@@ -1,6 +1,26 @@
 {
   "dependencies": {
-    "inquirer": "^8.2.4",
-    "mysql2": "^3.3.5"
-  }
+    "inquirer": "^8.2.5",
+    "mysql": "^2.18.1"
+  },
+  "name": "chopper-databases",
+  "description": "database",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Asavage650/chopper-databases.git"
+  },
+  "keywords": [
+    "database"
+  ],
+  "author": "alexius savage",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Asavage650/chopper-databases/issues"
+  },
+  "homepage": "https://github.com/Asavage650/chopper-databases#readme"
 }

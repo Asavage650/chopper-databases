@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const { default: Choices } = require("inquirer/lib/objects/choices");
+const { default: Prompt } = require("inquirer/lib/prompts/base");
 const mysql = require("mysql");
 require("console.table");
 
@@ -70,13 +71,65 @@ function prompt() {
 }
 
 function viewAlldepartments() {
-  const query = ``;
+  const query = `SELECT department.name, AS department, role.title, employee.id, employee.first_name, employee.last_name
+  FROM employee
+  LEFT JOIN role ON (role.id = employee.role_id)
+  LEFT JOIN department ON (department.id = role.department_id)
+  ORDER BY department.name;`;
+  connection.query(query, (err, res) => {
+    if (err) throw err;
+    console.log("\n");
+    console.log("VIEW EMPLOYEE BY DEPARTMENT");
+    console.log("\n");
+    console.table(res);
+    prompt();
+  });
 }
 
 function viewAllroles() {
-  const query = ``;
+  const query = `SELECT role.title, employee.id, employee.first_name. employee.last_name, department.name AS department
+  FROM employee
+  LEFT JOIN role ON (role.id = employee.role_id)
+  LEFT JOIN department ON (department.id = role.department_id)
+  ORDER BY role.title;`;
+  connection.query(query, (err, res) => {
+    if (err) throw err;
+    console.log("\n");
+    console.log("VIEW EMPLOYEE BY ROLE");
+    console.log("\n");
+    console.table(res);
+    prompt();
+  });
 }
 
 function viewAllEmployees() {
-  const query = ``;
+  const query = `SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT(manager.first_name,'',manager.last_name) AS manager
+  FROM employee
+  LEFT JOIN employee manager on manager.id = employee.manager_id
+  INNER JOIN role ON (role.id = employee.role_id)
+  INNER JOIN department ON (department.id = role.department_id)
+  ORDER BY employee.id;`;
+  connection.query(query, (err, res) => {
+    if (err) throw err;
+    console.log("\n");
+    console.log("VIEW ALL EMPLOYEES");
+    console.log("\n");
+    console.table(res);
+    prompt();
+  });
+}
+
+async function addAdepartment() {
+  const addDepartment = await inquirer.prompt(askDep());
+  connection.query(
+    "SELECT role.id, role.title FROM role ORDER BY role.id;",
+    async (err, res) => {
+      if (err) throw err;
+      const { addDepartment } = await inquirer.prompt([
+        {
+          name: "Department",
+        },
+      ]);
+    }
+  );
 }
